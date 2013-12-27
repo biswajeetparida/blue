@@ -1,0 +1,95 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>CandidateProfile creation</h2>
+    
+    <div class="span8 centred form-horizontal">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="control-group">
+            {{ form_errors(form.candidateName) }}
+            <div class="control-label">{{ form_label(form.candidateName) }}</div>
+            <div class="control offset2">{{ form_widget(form.candidateName) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.phoneNumber) }}
+            <div class="control-label">{{ form_label(form.phoneNumber) }}</div>
+            <div class="control offset2">{{ form_widget(form.phoneNumber) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.email) }}
+            <div class="control-label">{{ form_label(form.email) }}</div>
+            <div class="control offset2">{{ form_widget(form.email) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.currentCompany) }}
+            <div class="control-label">{{ form_label(form.currentCompany) }}</div>
+            <div class="control offset2">{{ form_widget(form.currentCompany) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.currentDesignation) }}
+            <div class="control-label">{{ form_label(form.currentDesignation) }}</div>
+            <div class="control offset2">{{ form_widget(form.currentDesignation) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.yearsOfExperience) }}
+            <div class="control-label">{{ form_label(form.yearsOfExperience) }}</div>
+            <div class="control offset2">{{ form_widget(form.yearsOfExperience) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.relevantYearsOfExperience) }}
+            <div class="control-label">{{ form_label(form.relevantYearsOfExperience) }}</div>
+            <div class="control offset2">{{ form_widget(form.relevantYearsOfExperience) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.currentCtc) }}
+            <div class="control-label">{{ form_label(form.currentCtc) }}</div>
+            <div class="control offset2">{{ form_widget(form.currentCtc) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.expectedCtc) }}
+            <div class="control-label">{{ form_label(form.expectedCtc) }}</div>
+            <div class="control offset2">{{ form_widget(form.expectedCtc) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.noticePeriod) }}
+            <div class="control-label">{{ form_label(form.noticePeriod) }}</div>
+            <div class="control offset2">{{ form_widget(form.noticePeriod) }}</div>
+        </div>
+        <div class="control-group ">
+            {{ form_errors(form.currentLocation) }}
+            <div class="control-label">{{ form_label(form.currentLocation) }}</div>
+            <div class="control offset2">{{ form_widget(form.currentLocation) }}</div>
+        </div>
+        <div class="control-group ">
+            {{ form_errors(form.preferredLocation) }}
+            <div class="control-label">{{ form_label(form.preferredLocation) }}</div>
+            <div class="control offset2">{{ form_widget(form.preferredLocation) }}</div>
+        </div>
+        <div class="control-group ">
+            {{ form_errors(form.resume) }}
+            <div class="control-label">{{ form_label(form.resume) }}</div>
+            <div class="control offset2">{{ form_widget(form.resume) }}</div>
+        </div>
+        <div class="control-group hide">
+            {{ form_errors(form.jobRequirement) }}
+            <div class="control-label">{{ form_label(form.jobRequirement) }}</div>
+            <div class="control offset2">{{ form_widget(form.jobRequirement) }}</div>
+        </div>
+        
+        <div>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-large offset2'}} ) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+<div class="span2">
+    <ul class="record_actions nav">
+        <li>
+            <a href="{{ path('candidateprofile') }}" >
+                Back to the list
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

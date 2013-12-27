@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    
+    {% if is_granted('ROLE_COMPANY_USER') %}
+    <h1>VendorProfileLimit list</h1>
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>JobRequirementId</th>
+                <th>VendorUser</th>
+                <th>ProfileLimit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.jobRequire.id }}</td>
+                <td>{{ entity.vendorUser.username }}</td>
+                <td>{{ entity.profileLimit }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('vendorprofilelimit_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('vendorprofilelimit_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('vendorprofilelimit_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% else %}
+         <h1>you are not allowed in this area</h1>
+     
+    {% endif %}
+    {% endblock %}

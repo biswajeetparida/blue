@@ -1,0 +1,118 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>CandidateProfile</h1>
+
+    <table class="record_properties table table-striped table-bordered table-hover span5">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ entity.source }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ entity.designation }}</td>
+            </tr>
+            <tr>
+                <th>Candidatename</th>
+                <td>{{ entity.candidateName }}</td>
+            </tr>
+            <tr>
+                <th>Phonenumber</th>
+                <td>{{ entity.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>Currentcompany</th>
+                <td>{{ entity.currentCompany }}</td>
+            </tr>
+            <tr>
+                <th>Currentdesignation</th>
+                <td>{{ entity.currentDesignation }}</td>
+            </tr>
+            <tr>
+                <th>Yearsofexperience</th>
+                <td>{{ entity.yearsOfExperience }}</td>
+            </tr>
+            <tr>
+                <th>Relevantyearsofexperience</th>
+                <td>{{ entity.relevantYearsOfExperience }}</td>
+            </tr>
+            <tr>
+                <th>Currentctc</th>
+                <td>{{ entity.currentCtc }}</td>
+            </tr>
+            <tr>
+                <th>Expectedctc</th>
+                <td>{{ entity.expectedCtc }}</td>
+            </tr>
+            <tr>
+                <th>Noticeperiod</th>
+                <td>{{ entity.noticePeriod }}</td>
+            </tr>
+            <tr>
+                <th>Currentlocation</th>
+                <td>{{ entity.currentLocation }}</td>
+            </tr>
+            <tr>
+                <th>Preferredlocation</th>
+                <td>{{ entity.preferredLocation }}</td>
+            </tr>
+            <tr>
+                <th>Screeningresult</th>
+                <td>{{ entity.screeningResult }}</td>
+            </tr>
+            <tr>
+                <th>Telephonicinterviewresult</th>
+                <td>{{ entity.telephonicInterviewResult }}</td>
+            </tr>
+            <tr>
+                <th>Personalinterviewresult</th>
+                <td>{{ entity.personalInterviewResult }}</td>
+            </tr>
+            <tr>
+                <th>Hrroundresult</th>
+                <td>{{ entity.hrRoundResult }}</td>
+            </tr>
+            <tr>
+                <th>Offerletterdeliverydate</th>
+                <td>{{ entity.offerLetterDeliveryDate }}</td>
+            </tr>
+            <tr>
+                <th>Documentation</th>
+                <td>{{ entity.documentation }}</td>
+            </tr>
+            <tr>
+                <th>Joiningdate</th>
+                <td>{{ entity.joiningDate }}</td>
+            </tr>
+            <tr>
+                <th>Resume</th>
+                <td>{{ entity.resume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="span2">
+        <ul class="record_actions nav">
+            <li>
+                <a href="{{ path('candidateprofile') }}" class="btn" >
+                    Back to the list
+                </a>
+            </li>
+            <!--<li>
+                <a href="{{ path('candidateprofile_edit', { 'id': entity.id }) }}">
+                    Edit
+                </a>
+            </li>-->
+            <li>{{ form_start(delete_form) }}{{ form_widget(delete_form.submit, {'attr': {'class': 'btn'}} ) }}</li>
+        </ul>
+    </div>
+{% endblock %}

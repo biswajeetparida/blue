@@ -1,0 +1,89 @@
+security:
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+        ROLE_ADMIN:       [ROLE_COMPANY_USER]
+        ROLE_COMPANY_USER: [ROLE_USER, ROLE_VENDOR_CRUD, ROLE_JOBREQUIREMENT_CRUD, ROLE_JOBPROFILE_CRUD, ROLE_VENDOR_USER]
+        
+        #ROLE_COMPANY_ADMIN: [ROLE_COMPANY_READ, ROLE_COMPANY_UPDATE, ROLE_VENDOR_CREATE, ROLE_VENDOR_DELETE]
+        
+        #ROLE_VENDOR_ADMIN:       [ROLE_VENDOR_CREATE, ROLE_VENDOR_READ, ROLE_VENDOR_UPDATE, ROLE_VENDOR_DELETE]
+        #SONATA:
+        #    - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
+        #            # if you are using acl then this line must be commented
+        #    - ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+    firewalls:
+
+        # -> custom firewall for the admin area of the URL
+        admin:
+            switch_user:        true
+            context:            user
+            pattern:            /admin(.*)
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+                use_referer:    true
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:    true
+            remember_me:
+                key:      9034895c8e6816cad3f8fc4d3171bce10
+                lifetime: 3600
+                path:     /
+                domain:   ~
+
+        # -> end custom configuration
+
+        # defaut login area for standard users
+        main:
+            switch_user:        true
+            context:            user
+            pattern:            .*
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+            logout:             true
+            anonymous:          true
+            remember_me:
+                key:      9034895c8e6816cad3f8fc4d3171bce10
+                lifetime: 3600
+                path:     /
+                domain:   ~
+
+    access_control:
+        # URL of FOSUserBundle which need to be available to anonymous users
+        - { path: ^/_wdt, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # -> custom access control for the admin area of the URL
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # -> end
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/admin, role: [ROLE_COMPANY_USER] }
+        - { path: ^/, role: ROLE_USER }
+        - { path: ^/company, role: ROLE_SUPER_ADMIN }
+        - { path: ^/company/.*, role: ROLE_SUPER_ADMIN }
+        - { path: ^/vendor/.*, role: ROLE_VENDOR_CRUD }
+        - { path: ^/jobRequirement/.*, role: ROLE_JOBREQUIREMENT_CRUD }
+        - { path: ^/candidateProfile/.*, role: ROLE_PROFILE_CRUD }
+    
+    
+

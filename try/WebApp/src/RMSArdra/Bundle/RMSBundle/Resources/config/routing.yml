@@ -1,0 +1,115 @@
+#rms_ardra_rms_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: RMSArdraRMSBundle:Default:index }
+jobrequirement:
+    pattern:  /jobRequirement
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:index }
+    methods:   [GET]
+
+jobrequirement_new:
+    pattern:  /jobRequirement/new
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:new }
+    methods:   [GET]
+
+jobrequirement_create:
+    pattern:  /jobRequirement/create
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:create }
+    methods:   [POST]
+
+jobrequirement_show:
+    pattern:  /jobRequirement/{id}
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:show }
+    methods:   [GET]
+
+jobrequirement_edit:
+    pattern:  /jobRequirement/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:edit }
+    methods:   [GET]
+jobrequirement_update:
+    pattern:  /jobRequirement/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:update }
+    methods:   [PUT]
+
+jobrequirement_delete:
+    pattern:  /jobRequirement/{id}
+    defaults: { _controller: RMSArdraRMSBundle:JobRequirement:delete }
+    methods:   [DELETE]
+    
+    
+    
+    
+    
+candidateprofile:
+    pattern:  /candidateProfile
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:index }
+    methods:   [GET]
+
+candidateprofile_new:
+    pattern:  /candidateProfile/new
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:new }
+    methods:   [GET]
+
+candidateprofile_create:
+    pattern:  /candidateProfile/create
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:create }
+    methods:   [POST]
+
+candidateprofile_show:
+    pattern:  /candidateProfile/{id}
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:show }
+    methods:   [GET]
+
+candidateprofile_edit:
+    pattern:  /candidateProfile/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:edit }
+    methods:   [GET]
+
+candidateprofile_edit_status:
+    pattern:  /candidateProfile/{id}/status
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:status }
+    methods:   [GET]
+
+candidateprofile_update:
+    pattern:  /candidateProfile/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:update }
+    methods:   [PUT]
+
+candidateprofile_delete:
+    pattern:  /candidateProfile/{id}
+    defaults: { _controller: RMSArdraRMSBundle:CandidateProfile:delete }
+    methods:   [DELETE]
+    
+vendorprofilelimit:
+    pattern:  /vendorProfileLimit
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:index }
+    methods:   [GET]
+
+vendorprofilelimit_new:
+    pattern:  /vendorProfileLimit/new
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:new }
+    methods:   [GET]
+
+vendorprofilelimit_create:
+    pattern:  /vendorProfileLimit/create
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:create }
+    methods:   [POST]
+
+vendorprofilelimit_show:
+    pattern:  /vendorProfileLimit/{id}
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:show }
+    methods:   [GET]
+
+vendorprofilelimit_edit:
+    pattern:  /vendorProfileLimit/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:edit }
+    methods:   [GET]
+vendorprofilelimit_update:
+    pattern:  /vendorProfileLimit/{id}/edit
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:update }
+    methods:   [PUT]
+
+vendorprofilelimit_delete:
+    pattern:  /vendorProfileLimit/{id}
+    defaults: { _controller: RMSArdraRMSBundle:VendorProfileLimit:delete }
+    methods:   [DELETE]
+

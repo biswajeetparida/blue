@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>VendorProfileLimit creation</h1>
+    <form action="{{ path('vendorprofilelimit_create') }}" method="POST">
+    {% for user in users %}
+        <label for="datum[{{user}}][limit]">{{user}}</label>
+        <input type="hidden" name="datum[{{user}}][requirement]" value="{{ app.request.get('id') }}">
+            <input type="number" name="datum[{{user}}][limit]">
+            <input type="hidden" name="datum[{{user}}][vendor]" value="{{user.id }}">
+        <br />
+    {% endfor %}
+    <input type="submit">
+    </form>
+    
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('vendorprofilelimit') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

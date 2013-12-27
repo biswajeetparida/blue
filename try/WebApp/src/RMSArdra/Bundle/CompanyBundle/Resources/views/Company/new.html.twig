@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Company creation</h1>
+
+    <div class="span6 centred form-horizontal ">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="control-group row">
+            {{ form_errors(form.name) }}
+            <div class="control-label">{{ form_label(form.name) }}</div>
+            <div class="control offset2">{{ form_widget(form.name) }}</div>
+        </div>
+        <div class="control-group row">
+            {{ form_errors(form.registrationNo) }}
+            <div class="control-label">{{ form_label(form.registrationNo) }}</div>
+            <div class="control offset2">{{ form_widget(form.registrationNo) }}</div>
+        </div>
+        <div class="control-group row">
+            {{ form_errors(form.location) }}
+            <div class="control-label">{{ form_label(form.location) }}</div>
+            <div class="control offset2">{{ form_widget(form.location) }}</div>
+        </div>
+        <div class="control-group row">
+            {{ form_errors(form.contactNumber) }}
+            <div class="control-label">{{ form_label(form.contactNumber) }}</div>
+            <div class="control offset2">{{ form_widget(form.contactNumber) }}</div>
+        </div>
+        <div class="control-group row">
+            {{ form_errors(form.organizationType) }}
+            <div class="control-label">{{ form_label(form.organizationType) }}</div>
+            <div class="control offset2">{{ form_widget(form.organizationType) }}</div>
+        </div>
+        <div class="control-group row">
+            {{ form_errors(form.website) }}
+            <div class="control-label">{{ form_label(form.website) }}</div>
+            <div class="control offset2">{{ form_widget(form.website) }}</div>
+        </div>
+        <div>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-large offset2 row'}} ) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+<div class="span2">
+    <ul class="record_actions nav">
+        <li>
+            <a href="{{ path('company') }}" class="btn" >
+                Back to the list
+            </a>
+        </li>
+    </ul>
+</div>        
+{% endblock %}

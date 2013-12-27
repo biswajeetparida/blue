@@ -1,0 +1,319 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    #- { resource: @ApplicationSonataUserBundle/Resources/config/service.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    #form:
+    #    resources:
+    #        - BraincraftedBootstrapBundle:Form:form_div_layout.html.twig
+
+knp_menu:
+    twig:
+        template: BraincraftedBootstrapBundle:Menu:bootstrap.html.twig
+
+knp_paginator:
+    template:
+        #pagination: BraincraftedBootstrapBundle:Pagination:bootstrap.html.twig
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    #java: /usr/bin/java
+    #filters:
+    #    cssrewrite: ~
+    #    #closure:
+    #    #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+    #    #yui_css:
+    filters:
+        less:
+            node: /usr/local/bin/node
+            node_paths: [/usr/local/lib/node_modules]
+            apply_to: "\.less$"
+        lessphp:
+             file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+             apply_to: "\.less$"
+        cssrewrite: ~
+    assets:
+        bootstrap_css:
+            inputs:
+                - %kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less
+            filters:
+                - lessphp
+                - cssrewrite
+            output: css/bootstrap.css
+        bootstrap_js:
+            inputs:
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/transition.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/alert.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/button.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/carousel.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/collapse.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/dropdown.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/modal.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/tooltip.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/popover.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/scrollspy.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/tab.js
+                - %kernel.root_dir%/../vendor/twitter/bootstrap/js/affix.js
+                #- %kernel.root_dir%/../vendor/braincrafted/bootstrap-bundle/Braincrafted/Bundle/BootstrapBundle/Resources/js/bc-bootstrap-collection.js
+            output: js/bootstrap.js
+        jquery:
+            inputs:
+                - %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+            output: js/jquery.js
+
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                mappings:
+                    RMSArdraCompanyBundle: ~
+                    RMSArdraRMSBundle: ~
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_loggable:
+                        type: annotation
+                        prefix: Gedmo\Loggable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+                        alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_tree:
+                        type: annotation
+                        prefix: Gedmo\Tree\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                        alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_timestampable:
+                        type: annotation
+                        prefix: Gedmo\Timestampable
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Timestampable"
+                        alias: GedmoTimestampable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_blameable:
+                        type: annotation
+                        prefix: Gedmo\Blameable
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Blameable"
+                        alias: GedmoBlameable # this one is optional and will default to the name set for the mapping
+                        is_bundle: false
+                    FOSUserBundle: ~
+                    ApplicationSonataUserBundle: ~
+                    SonataUserBundle: ~
+                    RMSArdraUserBundle: ~
+                    StofDoctrineExtensionsBundle: ~
+
+stof_doctrine_extensions:
+        orm:
+            default: ~
+
+#knp_menu:
+#    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+#        template: knp_menu.html.twig
+#    templating: false # if true, enables the helper for PHP templates
+#    default_renderer: twig # The renderer to use, list is also available by default
+#
+#knp_paginator:
+#    page_range: 5                      # default page range used in pagination control
+#    default_options:
+#        page_name: page                # page query parameter name
+#        sort_field_name: sort          # sort field query parameter name
+#        sort_direction_name: direction # sort direction query parameter name
+#        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+#    template:
+#        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+#        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+braincrafted_bootstrap:
+    output_dir:
+    assets_dir:  %kernel.root_dir%/../vendor/twitter/bootstrap
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.9.1.js
+    less_filter: lessphp # "less", "lessphp" or "none"
+    auto_configure:
+        assetic: false
+        twig: false
+        knp_menu: false
+        knp_paginator: false
+    customize:
+        variables_file: %kernel.root_dir%/Resources/less/variables.less
+        bootstrap_output: %kernel.root_dir%/Resources/less/bootstrap.less
+        bootstrap_template: BraincraftedBootstrapBundle:Bootstrap:bootstrap.less.twig
+
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Application\Sonata\UserBundle\Entity\User
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        sonata.user.block.menu:
+        sonata.admin.block.search_result:
+
+sonata_admin:
+
+    security:
+        handler: sonata.admin.security.handler.role
+
+    title:      Admin
+    title_logo: logo.png
+
+    templates:
+
+        # default global templates
+        layout:    SonataAdminBundle::standard_layout.html.twig
+        ajax:      SonataAdminBundle::ajax_layout.html.twig
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+
+        # default actions templates, should extend a global templates
+        list:    SonataAdminBundle:CRUD:list.html.twig
+        show:    SonataAdminBundle:CRUD:show.html.twig
+        edit:    SonataAdminBundle:CRUD:edit.html.twig
+
+    security:
+        handler: sonata.admin.security.handler.role
+        # role security information
+        information:
+            EDIT: EDIT
+            LIST: LIST
+            CREATE: CREATE
+            VIEW: VIEW
+            DELETE: DELETE
+            EXPORT: EXPORT
+            OPERATOR: OPERATOR
+            MASTER: MASTER
+
+    dashboard:
+        blocks:
+            # display a dashboard block
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+
+            # Customize this part to add new block configuration
+            -
+                position: right
+                type: sonata.block.service.text
+                settings:
+                    content: "<h2>Welcome  Admin</h2>"
+                    #<p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"
+            #-
+            #    position: right
+            #    type: sonata.block.service.rss
+            #    settings:
+            #        title: Sonata Project's Feeds
+            #        url: http://sonata-project.org/blog/archive.rss
+
+    persist_filters: true
+
+sonata_user:
+    security_acl:             false
+    table:
+        user_group:           fos_user_user_group
+
+    #impersonating:
+    #    route:                page_slug
+    #    parameters:           { path: / }
+
+    manager_type:             orm
+    class:
+        user:        Application\Sonata\UserBundle\Entity\User
+    admin:
+        user:
+            class:   Application\Sonata\UserBundle\Admin\Model\UserAdmin
+            controller:     ApplicationSonataUserBundle:CRUD
+            translation:    SonataUserBundle
+
+    profile:
+        form:
+            type:                 sonata_user_profile
+            handler:              sonata.user.profile.form.handler.default
+            name:                 sonata_user_profile_form
+            validation_groups:
+                # Defaults:
+                - Profile
+                - Default
+
+
+services:
+    lrotherfield.form.type.hidden_entity:
+        class: Lrotherfield\Component\Form\Type\HiddenEntityType
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: form.type, alias: hidden_entity }
+    
+    listener.requestresponse:
+        class: RMSArdra\Bundle\RMSBundle\Listener\RequestListener
+        tags:
+          - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+    
+    listener.requestresponse:
+        class: RMSArdra\Bundle\RMSBundle\Listener\RMSListener
+        arguments: [ @service_container ]
+        tags:
+          - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

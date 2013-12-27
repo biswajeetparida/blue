@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>CandidateProfile list</h1>
+
+    <table class="records_list table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+               {% if is_granted('ROLE_COMPANY_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN') %} 
+                <th>Source</th>
+                <!--<th>Designation</th>-->
+                {% endif %}
+                <th>Candidate name</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Current company</th>
+                <th>Current designation</th>
+                <th>Years of experience</th>
+                <!--<th>Relevantyearsofexperience</th>
+                <th>Currentctc</th>
+                <th>Expectedctc</th>
+                <th>Noticeperiod</th>
+                <th>Currentlocation</th>
+                <th>Preferredlocation</th>-->
+                <th>Screening result</th>
+                <th>Telephonic result</th>
+                <th>PI result</th>
+                <th>Hr result</th>
+                <!--<th>Offerletterdeliverydate</th>-->
+                <th>Documentation</th>
+                <!--<th>Joiningdate</th>-->
+                <!--<th>Resume</th>-->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if entities== null %}
+                <tr><td colspan="14" style="text-align: center">no candidate found</td></tr>
+        {% else %}
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('candidateprofile_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                {% if is_granted('ROLE_COMPANY_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN') %}
+                <td>{{ entity.source }}</td>
+                {% endif %}
+                <!--<td>{{ entity.designation }}</td>-->
+                <td>{{ entity.candidateName }}</td>
+                <td>{{ entity.phoneNumber }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.currentCompany }}</td>
+                <td>{{ entity.currentDesignation }}</td>
+                <td>{{ entity.yearsOfExperience }}</td>
+                <!--<td>{{ entity.relevantYearsOfExperience }}</td>
+                <td>{{ entity.currentCtc }}</td>
+                <td>{{ entity.expectedCtc }}</td>
+                <td>{{ entity.noticePeriod }}</td>
+                <td>{{ entity.currentLocation }}</td>
+                <td>{{ entity.preferredLocation }}</td>-->
+                <td>{{ entity.screeningResult }}</td>
+                <td>{{ entity.telephonicInterviewResult }}</td>
+                <td>{{ entity.personalInterviewResult }}</td>
+                <td>{{ entity.hrRoundResult }}</td>
+                <!--<td>{{ entity.offerLetterDeliveryDate }}</td>-->
+                <td>{{ entity.documentation }}</td>
+                <!--<td>{{ entity.joiningDate }}</td>-->
+                <!--<td>{{ entity.resume }}</td>-->
+                <td>
+                <ul class="nav">
+                    <li>
+                        <a href="{{ path('candidateprofile_show', { 'id': entity.id }) }}"><i class="icon-eye-open"></i>show</a>
+                    </li>
+                    <!--<li>
+                        <a href="{{ path('candidateprofile_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>-->
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+        <!--<ul>
+        <li>
+            <a href="{{ path('candidateprofile_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>-->
+    {% endblock %}

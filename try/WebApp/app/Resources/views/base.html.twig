@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/mycss.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo.ico') }}" />
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+        <script src="{{ asset('js/bootstrap.js') }}"></script>
+    </head>
+    <body>
+        <div class="navbar navbar-static">
+            <div class="navbar-inner">
+                <a href="#" class="brand">RMS ARDRA</a>
+                {% if app.user %}
+                {{ knp_menu_render('RMSArdraRMSBundle:Builder:basicNavbar', {'nav_type': 'navbar'}) }}
+                <!--<ul role="navigation" class="nav">
+                    <li><a href="#">Profile</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Messages <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Inbox</a></li>
+                            <li><a href="#">Drafts</a></li>
+                            <li><a href="#">Sent Items</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Trash</a></li>
+                        </ul>
+                    </li>
+                </ul>-->
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">{{app.user.username}} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path("sonata_user_profile_show") }}">profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Settings</a></li>
+                            <li><a href="{{ path("fos_user_security_logout") }}">logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
+                
+            </div>
+        </div>
+        
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

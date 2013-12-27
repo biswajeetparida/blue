@@ -1,0 +1,650 @@
+<?php
+
+namespace RMSArdra\Bundle\RMSBundle\Entity;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * JobProfilePost
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class JobProfilePost
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=100)
+     */
+    private $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=50)
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100)
+     */
+    private $email;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="phone_no", type="integer")
+     */
+    private $phoneNo;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mobile_no", type="integer")
+     */
+    private $mobileNo;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dob", type="date")
+     */
+    private $dob;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="year_of_experience", type="string", length=100)
+     */
+    private $yearOfExperience;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="relevant_experience", type="string", length=100)
+     */
+    private $relevantExperience;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="current_company", type="string", length=50)
+     */
+    private $currentCompany;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="designation", type="string", length=50)
+     */
+    private $designation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="current_ctc", type="string", length=100)
+     */
+    private $currentCtc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="expected_ctc", type="string", length=100)
+     */
+    private $expectedCtc;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notice_period", type="string", length=100)
+     */
+    private $noticePeriod;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="current_location", type="string", length=255)
+     */
+    private $currentLocation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="preferred_location", type="string", length=255)
+     */
+    private $preferredLocation;
+    
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="created_by", type="integer")
+     */
+    private $createdBy;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="updated_by", type="integer")
+     */
+    private $updatedBy;
+    
+    /**
+     *@var string
+     *
+     *
+     * @ORM\ManyToMany(targetEntity="RMSArdra\Bundle\RMSBundle\Entity\JobRequirementPost")
+     * @ORM\JoinTable(name="Job_Requirement_Profile", joinColumns={@ORM\JoinColumn(name="job_requirement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="job_profile_id", referencedColumnName="id")}
+        )
+     **/
+    private $job_requirement;
+
+    public function __construct() {
+        $this->job_requirement = new ArrayCollection();
+    }
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     * @return JobProfile
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string 
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     * @return JobProfile
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string 
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return JobProfile
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set phoneNo
+     *
+     * @param integer $phoneNo
+     * @return JobProfile
+     */
+    public function setPhoneNo($phoneNo)
+    {
+        $this->phoneNo = $phoneNo;
+    
+        return $this;
+    }
+
+    /**
+     * Get phoneNo
+     *
+     * @return integer 
+     */
+    public function getPhoneNo()
+    {
+        return $this->phoneNo;
+    }
+
+    /**
+     * Set mobileNo
+     *
+     * @param integer $mobileNo
+     * @return JobProfile
+     */
+    public function setMobileNo($mobileNo)
+    {
+        $this->mobileNo = $mobileNo;
+    
+        return $this;
+    }
+
+    /**
+     * Get mobileNo
+     *
+     * @return integer 
+     */
+    public function getMobileNo()
+    {
+        return $this->mobileNo;
+    }
+
+    /**
+     * Set dob
+     *
+     * @param \DateTime $dob
+     * @return JobProfile
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
+    
+        return $this;
+    }
+
+    /**
+     * Get dob
+     *
+     * @return \DateTime 
+     */
+    public function getDob()
+    {
+        return $this->dob;
+    }
+
+    /**
+     * Set yearOfExperience
+     *
+     * @param string $yearOfExperience
+     * @return JobProfile
+     */
+    public function setYearOfExperience($yearOfExperience)
+    {
+        $this->yearOfExperience = $yearOfExperience;
+    
+        return $this;
+    }
+
+    /**
+     * Get yearOfExperience
+     *
+     * @return string 
+     */
+    public function getYearOfExperience()
+    {
+        return $this->yearOfExperience;
+    }
+
+    /**
+     * Set relevantExperience
+     *
+     * @param string $relevantExperience
+     * @return JobProfile
+     */
+    public function setRelevantExperience($relevantExperience)
+    {
+        $this->relevantExperience = $relevantExperience;
+    
+        return $this;
+    }
+
+    /**
+     * Get relevantExperience
+     *
+     * @return string 
+     */
+    public function getRelevantExperience()
+    {
+        return $this->relevantExperience;
+    }
+
+    /**
+     * Set currentCompany
+     *
+     * @param string $currentCompany
+     * @return JobProfile
+     */
+    public function setCurrentCompany($currentCompany)
+    {
+        $this->currentCompany = $currentCompany;
+    
+        return $this;
+    }
+
+    /**
+     * Get currentCompany
+     *
+     * @return string 
+     */
+    public function getCurrentCompany()
+    {
+        return $this->currentCompany;
+    }
+
+    /**
+     * Set designation
+     *
+     * @param string $designation
+     * @return JobProfile
+     */
+    public function setDesignation($designation)
+    {
+        $this->designation = $designation;
+    
+        return $this;
+    }
+
+    /**
+     * Get designation
+     *
+     * @return string 
+     */
+    public function getDesignation()
+    {
+        return $this->designation;
+    }
+
+    /**
+     * Set currentCtc
+     *
+     * @param string $currentCtc
+     * @return JobProfile
+     */
+    public function setCurrentCtc($currentCtc)
+    {
+        $this->currentCtc = $currentCtc;
+    
+        return $this;
+    }
+
+    /**
+     * Get currentCtc
+     *
+     * @return string 
+     */
+    public function getCurrentCtc()
+    {
+        return $this->currentCtc;
+    }
+
+    /**
+     * Set expectedCtc
+     *
+     * @param string $expectedCtc
+     * @return JobProfile
+     */
+    public function setExpectedCtc($expectedCtc)
+    {
+        $this->expectedCtc = $expectedCtc;
+    
+        return $this;
+    }
+
+    /**
+     * Get expectedCtc
+     *
+     * @return string 
+     */
+    public function getExpectedCtc()
+    {
+        return $this->expectedCtc;
+    }
+
+    /**
+     * Set noticePeriod
+     *
+     * @param string $noticePeriod
+     * @return JobProfile
+     */
+    public function setNoticePeriod($noticePeriod)
+    {
+        $this->noticePeriod = $noticePeriod;
+    
+        return $this;
+    }
+
+    /**
+     * Get noticePeriod
+     *
+     * @return string 
+     */
+    public function getNoticePeriod()
+    {
+        return $this->noticePeriod;
+    }
+
+    /**
+     * Set currentLocation
+     *
+     * @param string $currentLocation
+     * @return JobProfile
+     */
+    public function setCurrentLocation($currentLocation)
+    {
+        $this->currentLocation = $currentLocation;
+    
+        return $this;
+    }
+
+    /**
+     * Get currentLocation
+     *
+     * @return string 
+     */
+    public function getCurrentLocation()
+    {
+        return $this->currentLocation;
+    }
+
+    /**
+     * Set preferredLocation
+     *
+     * @param string $preferredLocation
+     * @return JobProfile
+     */
+    public function setPreferredLocation($preferredLocation)
+    {
+        $this->preferredLocation = $preferredLocation;
+    
+        return $this;
+    }
+
+    /**
+     * Get preferredLocation
+     *
+     * @return string 
+     */
+    public function getPreferredLocation()
+    {
+        return $this->preferredLocation;
+    }
+    
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Company
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Company
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param integer $createdBy
+     * @return Company
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+    
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return integer 
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param integer $updatedBy
+     * @return Company
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+    
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return integer 
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+    
+    /**
+     * Set job_requirement
+     *
+     * @param string $job_requirement
+     * @return JobProfile
+     */
+    public function setJobRequirement($job_requirement)
+    {
+        $this->job_requirement = $job_requirement;
+    
+        return $this;
+    }
+
+    /**
+     * Get job_requirement
+     *
+     * @return string 
+     */
+    public function getJobRequirement()
+    {
+        return $this->job_requirement;
+    }
+    
+    public function __toString()
+    {
+        return $this->email;
+    }
+}

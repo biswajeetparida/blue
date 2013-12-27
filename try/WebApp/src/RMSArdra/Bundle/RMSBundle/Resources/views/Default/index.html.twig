@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div>
+    <div class="float-left ">
+        <a class="btn" href="{{ path('jobrequirement') }}">Job Requirement</a>
+    </div>
+    <div class="float-left">
+        <a class="btn" href="{{ path('candidateprofile') }}">Candidate Profile</a>
+    </div>
+    {% if is_granted('ROLE_COMPANY_USER')%} 
+    <div class="float-left">
+        <a class="btn" href="{{ path('sonata_admin_dashboard') }}">User</a>
+    </div>
+    {% endif %}
+
+    {% if is_granted('ROLE_SUPER_ADMIN')%} 
+    <div class="float-left">
+        <a class="btn" href="{{ path('company') }}">Company</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

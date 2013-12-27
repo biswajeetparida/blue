@@ -1,0 +1,10 @@
+parameters:
+#    rms_ardra_rms.example.class: RMSArdra\Bundle\RMSBundle\Example
+    file_uploader.file_base_path: "%kernel.root_dir%/../web/files"
+
+services:
+#    rms_ardra_rms.example:
+#        class: %rms_ardra_rms.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    

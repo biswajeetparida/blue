@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>VendorProfileLimit</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Job Require</th>
+                <td>{{ entity.jobRequire.id }}</td>
+            </tr>
+            <tr>
+                <th>Vendor User</th>
+                <td>{{ entity.vendorUser.username }}</td>
+            </tr>
+            <tr>
+                <th>Profilelimit</th>
+                <td>{{ entity.profileLimit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--    <ul class="record_actions">
+    <li>
+        <a href="{{ path('vendorprofilelimit') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('vendorprofilelimit_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>-->
+{% endblock %}

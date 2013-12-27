@@ -1,0 +1,186 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="span4">
+        <h1>JobRequirement</h1>
+    
+        <table class="record_properties table table-striped table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ entity.id }}</td>
+                </tr>
+                <!--<tr>
+                    <th>Jobcode</th>
+                    <td>{{ entity.jobCode }}</td>
+                </tr>-->
+                <tr>
+                    <th>Position</th>
+                    <td>{{ entity.position }}</td>
+                </tr>
+                <tr>
+                    <th>Yearofexperience</th>
+                    <td>{{ entity.yearOfExperience }}</td>
+                </tr>
+                <tr>
+                    <th>Relevantexperience</th>
+                    <td>{{ entity.relevantExperience }}</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>{{ entity.location }}</td>
+                </tr>
+                <tr>
+                    <th>Ctc</th>
+                    <td>{{ entity.ctc }}</td>
+                </tr>
+                <tr>
+                    <th>Noticeperiod</th>
+                    <td>{{ entity.noticePeriod }}</td>
+                </tr>
+                <tr>
+                    <th>Qualification</th>
+                    <td>{{ entity.qualification }}</td>
+                </tr>
+                <tr>
+                    <th>Relevantskills</th>
+                    <td>{{ entity.relevantSkills }}</td>
+                </tr>
+                <tr>
+                    <th>Jobdescription</th>
+                    <td>{{ entity.jobDescription }}</td>
+                </tr>
+                <tr>
+                    <th>Startdate</th>
+                    <td>{{ entity.startDate }}</td>
+                </tr>
+                <tr>
+                    <th>Closedate</th>
+                    <td>{{ entity.closeDate }}</td>
+                </tr>
+                <!--<tr>
+                    <th>Createdat</th>
+                    <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Updatedat</th>
+                    <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
+                </tr>
+                <tr>
+                    <th>Createdby</th>
+                    <td>{{ entity.createdBy }}</td>
+                </tr>
+                <tr>
+                    <th>Updatedby</th>
+                    <td>{{ entity.updatedBy }}</td>
+                </tr>-->
+                <!--<tr>
+                    <th>Vendors</th>
+                    <td>{{ entity.vendors }}</td>
+                </tr>-->
+            </tbody>
+        </table>
+    </div>
+    <div class="span5">
+        <h1>Candidates</h1>
+        <table class="records_list table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                   {% if is_granted('ROLE_COMPANY_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN') %} 
+                    <th>Source</th>
+                    <!--<th>Designation</th>-->
+                    {% endif %}
+                    <th>Candidate name</th>
+                    <th>Phone number</th>
+                    <th>Email</th>
+                    <th>Current company</th>
+                    <th>Current designation</th>
+                    <th>Years of experience</th>
+                    <!--<th>Relevantyearsofexperience</th>
+                    <th>Currentctc</th>
+                    <th>Expectedctc</th>
+                    <th>Noticeperiod</th>
+                    <th>Currentlocation</th>
+                    <th>Preferredlocation</th>-->
+                    
+                    <!--<th>Screening result</th>
+                    <th>Telephonic result</th>
+                    <th>PI result</th>
+                    <th>Hr result</th>-->
+                    
+                    <!--<th>Offerletterdeliverydate</th>-->
+                    <th>Documentation</th>
+                    <!--<th>Joiningdate</th>-->
+                    <!--<th>Resume</th>-->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if candidates== null %}
+                <tr><td colspan="10" style="text-align: center">no candidate found for this job requirement</td></tr>
+            {% else %}
+            {% for candidate in candidates %}
+                <tr>
+                    <td><a href="{{ path('candidateprofile_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    {% if is_granted('ROLE_COMPANY_USER','ROLE_ADMIN','ROLE_SUPER_ADMIN') %}
+                    <td>{{ entity.source }}</td>
+                    {% endif %}
+                    <!--<td>{{ entity.designation }}</td>-->
+                    <td>{{ entity.candidateName }}</td>
+                    <td>{{ entity.phoneNumber }}</td>
+                    <td>{{ entity.email }}</td>
+                    <td>{{ entity.currentCompany }}</td>
+                    <td>{{ entity.currentDesignation }}</td>
+                    <td>{{ entity.yearsOfExperience }}</td>
+                    <!--<td>{{ entity.relevantYearsOfExperience }}</td>
+                    <td>{{ entity.currentCtc }}</td>
+                    <td>{{ entity.expectedCtc }}</td>
+                    <td>{{ entity.noticePeriod }}</td>
+                    <td>{{ entity.currentLocation }}</td>
+                    <td>{{ entity.preferredLocation }}</td>-->
+                    
+                    <!--<td>{{ entity.screeningResult }}</td>
+                    <td>{{ entity.telephonicInterviewResult }}</td>
+                    <td>{{ entity.personalInterviewResult }}</td>
+                    <td>{{ entity.hrRoundResult }}</td>-->
+                    
+                    <!--<td>{{ entity.offerLetterDeliveryDate }}</td>-->
+                    <td>{{ entity.documentation }}</td>
+                    <!--<td>{{ entity.joiningDate }}</td>-->
+                    <!--<td>{{ entity.resume }}</td>-->
+                    <td>
+                    <ul class="nav">
+                        <li>
+                            <a href="{{ path('candidateprofile_show', { 'id': entity.id }) }}"><i class="icon-eye-open"></i>show</a>
+                        </li>
+                        <!--<li>
+                            <a href="{{ path('candidateprofile_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>-->
+                    </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="span5">
+        <ul class="record_actions nav pull-left">
+            <li>
+                <a href="{{ path('jobrequirement') }}"  class="btn">
+                    Back to the list
+                </a>
+            </li>
+            {% if is_granted('ROLE_COMPANY_USER') %}
+            <li>
+                <a href="{{ path('jobrequirement_edit', { 'id': entity.id }) }}"  class="btn"  >
+                    Edit
+                </a>
+            </li>
+            <li>{{ form_start(delete_form) }}{{ form_widget(delete_form.submit, {'attr': {'class': 'btn'}} ) }}</li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends '::main.html.twig' %}
+
+{% block body -%}
+    <h1>Company list</h1>
+
+    <table class="records_list table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Registrationno</th>
+                <th>Location</th>
+                <th>Contactnumber</th>
+                <th>Organizationtype</th>
+                <th>Website</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Createdby</th>
+                <th>Updatedby</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if entities== null %}
+                <tr><td colspan="12" style="text-align: center">no company found</td></tr>
+        {% else %}
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('company_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.registrationNo }}</td>
+                <td>{{ entity.location }}</td>
+                <td>{{ entity.contactNumber }}</td>
+                <td>{{ entity.organizationType }}</td>
+                <td>{{ entity.website }}</td>
+                <td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.createdBy }}</td>
+                <td>{{ entity.updatedBy }}</td>
+                <td>
+                <ul class="nav">
+                    <li>
+                        <a href="{{ path('company_show', { 'id': entity.id }) }}"><i class="icon-eye-open"></i>show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('company_edit', { 'id': entity.id }) }}"><i class="icon-edit"></i>edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('company_new') }}">
+       Create a new entry
+    </a>
+    {% endblock %}

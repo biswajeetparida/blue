@@ -1,0 +1,81 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h2>JobRequirement creation</h2>
+    
+    <div class="span8 centred form-horizontal">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <div class="control-group">
+            {{ form_errors(form.position) }}
+            <div class="control-label">{{ form_label(form.position) }}</div>
+            <div class="control offset2">{{ form_widget(form.position) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.yearOfExperience) }}
+            <div class="control-label">{{ form_label(form.yearOfExperience) }}</div>
+            <div class="control offset2">{{ form_widget(form.yearOfExperience) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.relevantExperience) }}
+            <div class="control-label">{{ form_label(form.relevantExperience) }}</div>
+            <div class="control offset2">{{ form_widget(form.relevantExperience) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.location) }}
+            <div class="control-label">{{ form_label(form.location) }}</div>
+            <div class="control offset2">{{ form_widget(form.location) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.ctc) }}
+            <div class="control-label">{{ form_label(form.ctc) }}</div>
+            <div class="control offset2">{{ form_widget(form.ctc) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.noticePeriod) }}
+            <div class="control-label">{{ form_label(form.noticePeriod) }}</div>
+            <div class="control offset2">{{ form_widget(form.noticePeriod) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.qualification) }}
+            <div class="control-label">{{ form_label(form.qualification) }}</div>
+            <div class="control offset2">{{ form_widget(form.qualification) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.relevantSkills) }}
+            <div class="control-label">{{ form_label(form.relevantSkills) }}</div>
+            <div class="control offset2">{{ form_widget(form.relevantSkills) }}</div>
+        </div>
+        <div class="control-group">
+            {{ form_errors(form.jobDescription) }}
+            <div class="control-label">{{ form_label(form.jobDescription) }}</div>
+            <div class="control offset2">{{ form_widget(form.jobDescription) }}</div>
+        </div>
+        <div class="control-group calendar">
+            {{ form_errors(form.startDate) }}
+            <div class="control-label">{{ form_label(form.startDate) }}</div>
+            <div class="control offset2">{{ form_widget(form.startDate) }}</div>
+        </div>
+        <div class="control-group calendar">
+            {{ form_errors(form.closeDate) }}
+            <div class="control-label">{{ form_label(form.closeDate) }}</div>
+            <div class="control offset2">{{ form_widget(form.closeDate) }}</div>
+        </div>
+        
+        
+        <div class="control offset2">
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-large offset2'}} ) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+<div class="span2">
+    <ul class="record_actions nav">
+        <li>
+            <a href="{{ path('jobrequirement') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

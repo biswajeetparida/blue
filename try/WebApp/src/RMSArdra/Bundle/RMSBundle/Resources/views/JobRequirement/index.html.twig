@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>JobRequirement list</h1>
+
+    <table class="records_list table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <!--<th>Jobcode</th>-->
+                <th>Position</th>
+                <th>Yearofexperience</th>
+                <th>Relevantexperience</th>
+                <th>Location</th>
+                <th>Ctc</th>
+                <!--<th>Noticeperiod</th>-->
+                <th>Qualification</th>
+                <th>Relevantskills</th>
+                <th>Jobdescription</th>
+                <th>Startdate</th>
+                <th>Closedate</th>
+                <!--<th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Createdby</th>
+                <th>Updatedby</th>-->
+                <!--<th>Vendors</th>-->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if entities== null %}
+                <tr><td colspan="12" style="text-align: center">no jobrequirement found</td></tr>
+        {% else %}
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('jobrequirement_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <!--<td>{{ entity.jobCode }}</td>-->
+                <td>{{ entity.position }}</td>
+                <td>{{ entity.yearOfExperience }}</td>
+                <td>{{ entity.relevantExperience }}</td>
+                <td>{{ entity.location }}</td>
+                <td>{{ entity.ctc }}</td>
+                <!--<td>{{ entity.noticePeriod }}</td>-->
+                <td>{{ entity.qualification }}</td>
+                <td>{{ entity.relevantSkills }}</td>
+                <td>{{ entity.jobDescription }}</td>
+                <td>{% if entity.startDate %}{{ entity.startDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.closeDate %}{{ entity.closeDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <!--<td>{% if entity.createdAt %}{{ entity.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.createdBy }}</td>
+                <td>{{ entity.updatedBy }}</td>-->
+                <!--<td>{{ entity.vendors }}</td>-->
+                <td>
+                <ul class="nav">
+                    <li>
+                        <a href="{{ path('jobrequirement_show', { 'id': entity.id }) }}"><i class="icon-eye-open"></i>  show</a>
+                    </li>
+                    {% if is_granted('ROLE_COMPANY_USER') %}
+                        <li>
+                            <a href="{{ path('jobrequirement_edit', { 'id': entity.id }) }}"><i class="icon-edit"></i>edit</a>
+                        </li>
+                        <!--<li>
+                            <a href="{{ path('vendorprofilelimit_show', { 'id': entity.id }) }}">view profile upload limit</a>
+                        </li>-->
+                    {% elseif is_granted('ROLE_VENDOR_USER') %}
+                        <li>
+                            <a href="{{ path('candidateprofile_new', { 'jobId': entity.id }) }}"><i class="icon-upload"></i>Upload Profile</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+        {% if is_granted('ROLE_COMPANY_USER') %}
+                    <a class="btn btn-primary" href="{{ path('jobrequirement_new') }}">
+                        Create a new entry
+                    </a>
+        {% endif %}
+    {% endblock %}

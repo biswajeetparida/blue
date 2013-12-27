@@ -1,0 +1,34 @@
+#services:
+#   #sonata_user_profile.profile.form.type:
+#   #   class: Application\Sonata\UserBundle\Form\Type\ProfileType
+#   #   tags:
+#   #     - { name: form.type, alias: sonata_user_profile }
+#   #   arguments: [%fos_user.model.user.class%]
+#
+#   #sonata_user.registration.form.type:
+#   #   class: Application\Sonata\UserBundle\Form\Type\RegistrationFormType
+#   #   arguments: [%fos_user.model.user.class%]
+#   #   tags: - { name: form.type, alias: sonata_user_registration }
+#
+#   sonata_user.profile.form.type:
+#        class: Application\Sonata\UserBundle\Form\Type\ProfileType
+#        arguments: [%fos_user.model.user.class%]
+#        tags:
+#            - { name: form.type, alias: application_sonata_user_profile }
+#
+#   sonata_user.form.handler.profile:
+#        class: Application\Sonata\UserBundle\Form\Handler\ProfileFormHandler
+#        arguments: ["@sonata.user.profile.form", "@request", "@fos_user.user_manager"]
+#        scope: request
+#        public: false
+#
+#sonata.admin.user:
+#        class: Application\Sonata\UserBundle\Admin\Model\UserAdmin
+#        tags:
+#            - {name: sonata.admin, manager_type: orm, group: users, label: users}
+#        arguments:
+#            - null
+#            - Application\Sonata\UserBundle\Entity\User
+#            - SonataAdminBundle:CRUD, @security.context
+#        calls:
+#            - [setUserManager, [@fos_user.user_manager]]
